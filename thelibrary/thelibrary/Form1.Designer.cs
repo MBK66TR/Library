@@ -46,6 +46,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.ExitButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.ReturnBookTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.BookAuthor = new System.Windows.Forms.Label();
             this.BookName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CopyNumberCountBox)).BeginInit();
@@ -275,6 +275,16 @@
             this.panel4.TabIndex = 14;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(-1, 215);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(138, 16);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Borrow Id for returning:";
+            // 
             // ReturnBookTextBox
             // 
             this.ReturnBookTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -381,24 +391,14 @@
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.Location = new System.Drawing.Point(0, 3);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(189, 40);
+            this.label2.Size = new System.Drawing.Size(189, 39);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Book Info";
+            this.label2.Text = "Search Book";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-1, 215);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 16);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Borrow Id for returning:";
             // 
             // Form1
             // 

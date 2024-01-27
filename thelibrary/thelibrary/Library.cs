@@ -41,12 +41,6 @@ namespace thelibrary
                 if(b.ISBN == isbn)
                 {
                     
-                    if(!(b.Title == title) || !(b.Author== author))
-                    {
-                        MessageBox.Show("Wrong Title or Author!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        
-                        return;
-                    }
                     b.CopyNumber+=copynumber;
                     clearList();
                     DeleteDataFromSQL("MainLibrary", b.ISBN);
@@ -88,78 +82,28 @@ namespace thelibrary
             }
 
         //kitabı aratma                         geliştirilecek
-        public string FindBookbyTitleorAuthor(string inputvalue)
+        public string FindBooks(string input)
         {
-            string returnValue="Books your looking for: \n \n"+"***\n";
+            string returnValue = "Books matching your search: \n \n" + "***\n";
             GetDataFromSQLMain();
-
 
             foreach (Book book in MainLibrary)
             {
-                if (book.Title.ToLower().Replace(" ", "") == inputvalue.ToLower().Replace(" ", "") || book.Author.ToLower().Replace(" ", "") == inputvalue.ToLower().Replace(" ", ""))
+                if (book.Title.ToLower().Contains(input.ToLower()) || book.Author.ToLower().Contains(input.ToLower()))
                 {
                     returnValue += "\n" + book.ToString() + "\n \n";
-
-                    
                 }
-
-                
             }
-            MainLibrary.Clear() ;
-            return returnValue+"\n***";
+
+            MainLibrary.Clear();
+            return returnValue + "\n***";
         }
+
         //Kitabı ödünç alma
         public void BorrowBook(string isbn)
         {
             GetDataFromSQLMain();
             GetDataFromSQLBorrowed();
-
-            /*    
-                // Book removebook = null;
-                  foreach (Book book1 in MainLibrary)
-                  {
-
-                      if (isbn==book1.ISBN)
-                      {
-
-                          if (book1.CopyNumber>0)
-                          {
-
-                              Book book2 = new Book();
-                              //removebook = book1;
-                              book2.ISBN = book1.ISBN;
-                              book2.Title = book1.Title;
-                              book2.Author = book1.Author;
-                              book2.CopyNumber = 0;
-                              book2.EnteranceDate = book1.EnteranceDate;
-                              book2.BorrowDate = DateTime.Now;
-                              book2.ReturnDate = DateTime.Now.AddDays(14);
-                              book1.CopyNumber--;
-                   //       DeleteDataFromSQL("MainLibrary", book1.ISBN);
-                              book2.CopyNumber = 1;
-                              BorrowLibrary.Add(book2);
-                              MessageBox.Show($"You Borrowed: {book2.ToString()}");
-                              break;
-                          }
-                          if(book1.CopyNumber<=0)
-                          {
-                              MessageBox.Show("Book is borrowed.Check borrowed books");
-                              break;
-                          }
-
-
-
-
-                      }
-                  }
-                  clearList();
-                  clearborrowedList();
-                  //MainLibrary.Remove(removebook);
-                  SetBorrowedLibraryDatatoSQL();
-                  SetMainLibraryDatatoSQL();
-                  BorrowLibrary.Clear();
-                  MainLibrary.Clear();
-              */
 
             bool isborrwed = false;
             foreach(Book book in MainLibrary)
@@ -175,12 +119,12 @@ namespace thelibrary
                     book.BorrowDate = DateTime.Now;
                     book.ReturnDate = DateTime.Now.AddDays(14);
                     BorrowLibrary.Add(book);
-                    MessageBox.Show("Borrow sucsess.", "Borrow sucsess.");
+                    MessageBox.Show("Borrow sucsess.", "Borrow sucsess.",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
                         break;
                     }
                     else
                     {
-                        MessageBox.Show("Not enough book.");
+                        MessageBox.Show("Not enough book.", "Not enough book.",MessageBoxButtons.OK,MessageBoxIcon.Hand);
                         break;
                     }
                 }
@@ -223,7 +167,7 @@ namespace thelibrary
                         AddToLibrary(book.Title, book.Author, book.ISBN, 1);
 
                         removedBook = book;
-                        MessageBox.Show("!!!!!!!!!!!!!!!!YOU ARE LATE!!!!!!!!!!!!");
+                        MessageBox.Show("!!!!!!!!!!YOU ARE LATE!!!!!!!!!!!!","",MessageBoxButtons.OK,MessageBoxIcon.Error);
                         break;
                     }
                 }
@@ -274,56 +218,7 @@ namespace thelibrary
             BorrowLibrary.Clear();
             return value;
         }
-        /*
-        //SQLden verileri alma ana kutuphane
-        private void GetDataFromSQLMain()
-        {
-            using (SQLiteConnection connection = new SQLiteConnection("Data source=DataBase.db;Version=3"))
-            {
-                string sql = "SELECT Title, Author, ISBN, CopyNumber ,EnteranceDate FROM MainLibrary";
-                SQLiteCommand command = new SQLiteCommand(sql, connection);
-                connection.Open();
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    string title = reader["Title"].ToString();
-                    string author = reader["Author"].ToString();
-                    string isbn = reader["ISBN"].ToString();
-                    int copyNumber = Convert.ToInt32(reader["CopyNumber"]);
-                    DateTime enterancedate = Convert.ToDateTime(reader["EnteranceDate"].ToString());
-                    MainLibrary.Add(new Book() { Title = title, Author = author, ISBN = isbn, CopyNumber = copyNumber ,EnteranceDate= enterancedate });
-                }
-                reader.Close();
-            }
-
-        }
-        
-        //SQLden veri alma emanetler kutuphanesi
-        private void GetDataFromSQLBorrowed()
-        {
-            using (SQLiteConnection connection = new SQLiteConnection("Data source=DataBase.db;Version=3"))
-            {
-                string sql = "SELECT Title, Author, ISBN, CopyNumber, EnteranceDate, BorrowId, BorrowDate, ReturnDate FROM BorrowedLibrary";
-                SQLiteCommand command = new SQLiteCommand(sql, connection);
-                connection.Open();
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    string title = reader["Title"].ToString();
-                    string author = reader["Author"].ToString();
-                    string isbn = reader["ISBN"].ToString();
-                    int copyNumber = Convert.ToInt32(reader["CopyNumber"]);
-                    DateTime enterancedate = Convert.ToDateTime(reader["EnteranceDate"].ToString());
-                    int borrowid = Convert.ToInt32(reader["BorrowId"]);
-                    DateTime barrowdate = Convert.ToDateTime(reader["BorrowDate"].ToString());
-                    DateTime retundate = Convert.ToDateTime(reader["ReturnDate"].ToString());
-                    BorrowLibrary.Add(new Book() { Title = title, Author = author, ISBN = isbn, CopyNumber = copyNumber ,EnteranceDate = enterancedate , Borrowid=borrowid, BorrowDate = barrowdate , ReturnDate = retundate});
-                }
-                reader.Close();
-            }
-
-        }
-        */
+      
         private void GetDataFromSQLMain()
         {
             using (SQLiteConnection connection = new SQLiteConnection("Data source=DataBase.db;Version=3"))
@@ -404,7 +299,7 @@ namespace thelibrary
         public void SetBorrowedLibraryDatatoSQL()
     {
         string connectionString = "Data source=DataBase.db;Version=3";
-        string sql = "INSERT INTO BorrowedLibrary (Title, Author, ISBN, CopyNumber, EnteranceDate, BorrowDate, ReturnDate) VALUES (@Title, @Author, @ISBN, @CopyNumber, @EnteranceDate, @BorrowDate, @ReturnDate)";
+        string sql = "INSERT INTO BorrowedLibrary ( Title, Author, ISBN, CopyNumber, EnteranceDate, BorrowDate, ReturnDate) VALUES (@Title, @Author, @ISBN, @CopyNumber, @EnteranceDate, @BorrowDate, @ReturnDate)";
 
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -449,7 +344,7 @@ namespace thelibrary
                   
                     int rowsAffected = command.ExecuteNonQuery();
 
-                    MessageBox.Show($"{rowsAffected} rows deleted.");
+                    //MessageBox.Show($"{rowsAffected} rows deleted.");
                 }
                 connection.Close() ;    
 
@@ -544,6 +439,10 @@ namespace thelibrary
             SetMainLibraryDatatoSQL();
             SetBorrowedLibraryDatatoSQL();
 
+
+
+            clearborrowedList();
+            clearList();
             MainLibrary.Clear();
             BorrowLibrary.Clear();
 

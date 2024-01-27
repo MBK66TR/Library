@@ -17,7 +17,8 @@ namespace thelibrary
         public Form1()
         {
             InitializeComponent();
-
+            ControlBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         //Kitap Ekleme Buttonu
         private void AddBookButton_Click(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace thelibrary
 
 
             MainLibrary.AddToLibrary(title,author,isbn,copyNumber);
-            MessageBox.Show("","successful.",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("successful.", "successful.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         //kitaplari gosterme butonu
@@ -66,7 +67,7 @@ namespace thelibrary
                 return;
             }
             richTextBox1.Clear();
-            richTextBox1.Text= MainLibrary.FindBookbyTitleorAuthor(input);
+            richTextBox1.Text= MainLibrary.FindBooks(input);
 
         }
         
@@ -84,7 +85,7 @@ namespace thelibrary
             MainLibrary.BorrowBook(input);
             richTextBox1.Clear() ;
             MainLibrary.ShowBooks();
-            MessageBox.Show("", "successful.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("successful.", "successful.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
         }
 
@@ -94,7 +95,7 @@ namespace thelibrary
             string input = ReturnBookTextBox.Text;
             if(string.IsNullOrEmpty(input))
             {
-                MessageBox.Show("Borrow Id please.");
+                MessageBox.Show("Borrow Id please.", "Borrow Id please.");
                 return;
             }
             try
@@ -108,7 +109,7 @@ namespace thelibrary
             MainLibrary.ReturnBook(Convert.ToInt32(input));
             richTextBox1.Clear();
             MainLibrary.ShowBooks();
-            MessageBox.Show("", "successful.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("successful.", "successful.", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
         }
 
