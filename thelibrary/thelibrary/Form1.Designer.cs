@@ -58,6 +58,7 @@
             this.BookAuthor = new System.Windows.Forms.Label();
             this.BookName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ShowExpiredBooksButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CopyNumberCountBox)).BeginInit();
@@ -106,7 +107,7 @@
             // AddBookButton
             // 
             this.AddBookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddBookButton.Location = new System.Drawing.Point(274, 63);
+            this.AddBookButton.Location = new System.Drawing.Point(274, 22);
             this.AddBookButton.Name = "AddBookButton";
             this.AddBookButton.Size = new System.Drawing.Size(258, 36);
             this.AddBookButton.TabIndex = 2;
@@ -162,7 +163,7 @@
             // ShowAllBooksButton
             // 
             this.ShowAllBooksButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowAllBooksButton.Location = new System.Drawing.Point(274, 109);
+            this.ShowAllBooksButton.Location = new System.Drawing.Point(274, 68);
             this.ShowAllBooksButton.Name = "ShowAllBooksButton";
             this.ShowAllBooksButton.Size = new System.Drawing.Size(258, 36);
             this.ShowAllBooksButton.TabIndex = 7;
@@ -173,7 +174,7 @@
             // SearchBookButton
             // 
             this.SearchBookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchBookButton.Location = new System.Drawing.Point(274, 163);
+            this.SearchBookButton.Location = new System.Drawing.Point(274, 122);
             this.SearchBookButton.Name = "SearchBookButton";
             this.SearchBookButton.Size = new System.Drawing.Size(258, 36);
             this.SearchBookButton.TabIndex = 8;
@@ -192,7 +193,7 @@
             // BorrowBookButton
             // 
             this.BorrowBookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BorrowBookButton.Location = new System.Drawing.Point(274, 215);
+            this.BorrowBookButton.Location = new System.Drawing.Point(274, 174);
             this.BorrowBookButton.Name = "BorrowBookButton";
             this.BorrowBookButton.Size = new System.Drawing.Size(258, 36);
             this.BorrowBookButton.TabIndex = 10;
@@ -203,7 +204,7 @@
             // ReturnBookButton
             // 
             this.ReturnBookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReturnBookButton.Location = new System.Drawing.Point(274, 265);
+            this.ReturnBookButton.Location = new System.Drawing.Point(274, 224);
             this.ReturnBookButton.Name = "ReturnBookButton";
             this.ReturnBookButton.Size = new System.Drawing.Size(258, 36);
             this.ReturnBookButton.TabIndex = 11;
@@ -214,7 +215,7 @@
             // ShowBorrowedBooksButton
             // 
             this.ShowBorrowedBooksButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowBorrowedBooksButton.Location = new System.Drawing.Point(274, 316);
+            this.ShowBorrowedBooksButton.Location = new System.Drawing.Point(274, 266);
             this.ShowBorrowedBooksButton.Name = "ShowBorrowedBooksButton";
             this.ShowBorrowedBooksButton.Size = new System.Drawing.Size(258, 49);
             this.ShowBorrowedBooksButton.TabIndex = 12;
@@ -224,6 +225,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.ShowExpiredBooksButton);
             this.panel3.Controls.Add(this.ExitButton);
             this.panel3.Controls.Add(this.ShowBorrowedBooksButton);
             this.panel3.Controls.Add(this.AddBookButton);
@@ -241,7 +243,7 @@
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ExitButton.Font = new System.Drawing.Font("Mongolian Baiti", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.Location = new System.Drawing.Point(274, 371);
+            this.ExitButton.Location = new System.Drawing.Point(274, 376);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(258, 59);
             this.ExitButton.TabIndex = 13;
@@ -400,6 +402,17 @@
             this.label2.Text = "Search Book";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ShowExpiredBooksButton
+            // 
+            this.ShowExpiredBooksButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowExpiredBooksButton.Location = new System.Drawing.Point(274, 321);
+            this.ShowExpiredBooksButton.Name = "ShowExpiredBooksButton";
+            this.ShowExpiredBooksButton.Size = new System.Drawing.Size(258, 49);
+            this.ShowExpiredBooksButton.TabIndex = 14;
+            this.ShowExpiredBooksButton.Text = "Show Expired Books";
+            this.ShowExpiredBooksButton.UseVisualStyleBackColor = true;
+            this.ShowExpiredBooksButton.Click += new System.EventHandler(this.ShowExpiredBooksButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -453,6 +466,7 @@
         private System.Windows.Forms.MaskedTextBox BorrowReturnTextBox;
         private System.Windows.Forms.MaskedTextBox ReturnBookTextBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button ShowExpiredBooksButton;
     }
 }
 

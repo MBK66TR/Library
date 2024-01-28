@@ -149,5 +149,11 @@ namespace thelibrary
             Application.Exit();
 
         }
+
+        private void ShowExpiredBooksButton_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            richTextBox1.Text= MainLibrary.ShowExpiredBooks();
+        }
     }
 }
