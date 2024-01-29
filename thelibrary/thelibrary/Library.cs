@@ -44,7 +44,7 @@ namespace thelibrary
                     b.CopyNumber+=copynumber;
                     clearList();
                     DeleteDataFromSQL("MainLibrary", b.ISBN);
-                    SetMainLibraryDatatoSQL();
+                 //   SetMainLibraryDatatoSQL();
                     MainLibrary.Clear();
                     return;
                 }
@@ -61,7 +61,7 @@ namespace thelibrary
             
             MainLibrary.Add(book);
             clearList();
-            SetMainLibraryDatatoSQL();
+         //   SetMainLibraryDatatoSQL();
             MainLibrary.Clear();
         }
 
@@ -117,6 +117,7 @@ namespace thelibrary
                     if(book.CopyNumber > 0)
                     {
                     isborrwed=true;
+                    
                     book.CopyNumber--;
                     book.BorrowDate = DateTime.Now;
                     book.ReturnDate = DateTime.Now.AddDays(14);
@@ -137,7 +138,7 @@ namespace thelibrary
             clearList();
             clearborrowedList();
             SetBorrowedLibraryDatatoSQL();
-            SetMainLibraryDatatoSQL();
+          //  SetMainLibraryDatatoSQL();
             }
             BorrowLibrary.Clear();
             MainLibrary.Clear();
@@ -208,7 +209,7 @@ namespace thelibrary
         //süresi geçmiş kitaplarla ilgili bilgileri gösterin
         public string ShowExpiredBooks()
         {
-            string value = "";
+            string value = "Expired Books Are:\n";
             GetDataFromSQLBorrowed();
             foreach (Book book in BorrowLibrary)
             {
@@ -386,13 +387,14 @@ namespace thelibrary
                     if(aaa.ISBN==bbb.ISBN)
                     {
                         DeleteDataFromSQL("MainLibrary", aaa.ISBN);
-
+                        break;
                     }
                     
                 }
             }
 
                 Templibrary.Clear();
+            SetMainLibraryDatatoSQL();
         }
 
         public void clearborrowedList()
