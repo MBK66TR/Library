@@ -186,7 +186,7 @@ namespace thelibrary
         //odunc Alinmis kitaplari goster
         public string ShowBorrowedBooks()
         {
-            string value = "";
+            string value = "\n";
             GetDataFromSQLBorrowed();
             foreach (Book book in BorrowLibrary)
             {
@@ -198,6 +198,7 @@ namespace thelibrary
                     "\n";
 
             }
+
             BorrowLibrary.Clear();
             return value;
             
