@@ -58,7 +58,9 @@ namespace thelibrary
                 CopyNumber = copynumber,
                 EnteranceDate = DateTime.Now,
             };
+            
             MainLibrary.Add(book);
+            clearList();
             SetMainLibraryDatatoSQL();
             MainLibrary.Clear();
         }
